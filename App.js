@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
 import Login from './components/Login';
+import Signin from './components/Signin';
 
 export default function App() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+	const [isSigninModalOpen, setSigninModalOpen] = useState(false);
 
-	function modalOpen() {
-		setIsModalOpen(!isModalOpen);
+	function loginModalOpen() {
+		setLoginModalOpen(!isLoginModalOpen);
+	}
+	function signinModalOpen() {
+		setSigninModalOpen(!isSigninModalOpen);
 	}
 
 	return (
@@ -17,11 +22,12 @@ export default function App() {
 			/>
 			<Text style={styles.mainText}>컴터파라</Text>
 			<View style={styles.mainButtons}>
-				<Pressable style={styles.button} onPress={modalOpen}>
-					<Login visible={isModalOpen} modalClose={modalOpen} />
+				<Pressable style={styles.button} onPress={loginModalOpen}>
+					<Login visible={isLoginModalOpen} modalClose={loginModalOpen} />
 					<Text style={styles.buttonText}>login</Text>
 				</Pressable>
-				<Pressable style={styles.button}>
+				<Pressable style={styles.button} onPress={signinModalOpen}>
+					<Signin visible={isSigninModalOpen} modalClose={signinModalOpen} />
 					<Text style={styles.buttonText}>signin</Text>
 				</Pressable>
 			</View>
