@@ -1,70 +1,18 @@
-import { useState } from 'react';
-import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
-import Login from './components/Login';
-import Signin from './components/Signin';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Start from './screens/Start';
+import Main from './screens/Main';
+
+const Stack = createStackNavigator();
 
 export default function App() {
-	const [isLoginModalOpen, setLoginModalOpen] = useState(false);
-	const [isSigninModalOpen, setSigninModalOpen] = useState(false);
-
-	function loginModalOpen() {
-		setLoginModalOpen(!isLoginModalOpen);
-	}
-	function signinModalOpen() {
-		setSigninModalOpen(!isSigninModalOpen);
-	}
-
 	return (
-		<View style={styles.container}>
-			<Image
-				style={styles.image}
-				source={require('../computer-para/assets/images/image.png')}
-			/>
-			<Text style={styles.mainText}>컴터파라</Text>
-			<View style={styles.mainButtons}>
-				<Pressable style={styles.button} onPress={loginModalOpen}>
-					<Login visible={isLoginModalOpen} modalClose={loginModalOpen} />
-					<Text style={styles.buttonText}>login</Text>
-				</Pressable>
-				<Pressable style={styles.button} onPress={signinModalOpen}>
-					<Signin visible={isSigninModalOpen} modalClose={signinModalOpen} />
-					<Text style={styles.buttonText}>signin</Text>
-				</Pressable>
-			</View>
-		</View>
+		<NavigationContainer>
+			<Stack.Navigator initialRouteName="Start">
+				<Stack.Screen name="Start" component={Start} />
+				<Stack.Screen name="Main" component={Main} />
+			</Stack.Navigator>
+		</NavigationContainer>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		marginTop: 300,
-	},
-	mainText: {
-		fontSize: 50,
-		textAlign: 'center',
-	},
-	image: {
-		alignItems: 'center',
-		justifyContent: 'center',
-		height: 100,
-		width: 100,
-		marginLeft: 150,
-	},
-	mainButtons: {
-		marginTop: 30,
-		justifyContent: 'center',
-		alignItems: 'center',
-		flexDirection: 'row',
-	},
-	button: {
-		width: 80,
-		marginHorizontal: 10,
-		borderWidth: 1,
-		padding: 3,
-		backgroundColor: '#f7fb21',
-	},
-	buttonText: {
-		fontSize: 30,
-		textAlign: 'center',
-	},
-});

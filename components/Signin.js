@@ -22,6 +22,13 @@ function Signin(props) {
 	function pwInputHandler(pw) {
 		setPwValue(pw);
 	}
+
+	function signInProcess() {
+		let userInfo = { name: nameValue, id: idValue, pw: pwValue };
+		props.signIn(userInfo);
+		props.modalClose();
+	}
+
 	return (
 		<Modal visible={props.visible} animationType="slide">
 			<View style={styles.container}>
@@ -50,7 +57,7 @@ function Signin(props) {
 					/>
 				</View>
 				<View style={styles.buttonContainer}>
-					<Pressable style={styles.button}>
+					<Pressable style={styles.button} onPress={signInProcess}>
 						<Text style={styles.buttonText}>회원가입</Text>
 					</Pressable>
 					<Pressable style={styles.button} onPress={props.modalClose}>

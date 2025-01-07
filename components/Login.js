@@ -12,6 +12,15 @@ function Login(props) {
 	const [idValue, setIdValue] = useState('');
 	const [pwValue, setPwValue] = useState('');
 
+	function checkUser() {
+		let info = props.userInfo;
+		info.map((data) => {
+			if (data.id === idValue && data.pw === pwValue) {
+				props.userChecked();
+			}
+		});
+	}
+
 	return (
 		<Modal visible={props.visible} animationType="slide">
 			<View style={styles.container}>
@@ -32,7 +41,7 @@ function Login(props) {
 					/>
 				</View>
 				<View style={styles.buttonContainer}>
-					<Pressable style={styles.button}>
+					<Pressable style={styles.button} onPress={checkUser}>
 						<Text style={styles.buttonText}>로그인</Text>
 					</Pressable>
 					<Pressable style={styles.button} onPress={props.modalClose}>
