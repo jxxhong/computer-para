@@ -1,14 +1,14 @@
-import {
-	StyleSheet,
-	Text,
-	TextInput,
-	View,
-	Button,
-	Pressable,
-	Image,
-} from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
+import Login from './components/Login';
 
 export default function App() {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	function modalOpen() {
+		setIsModalOpen(!isModalOpen);
+	}
+
 	return (
 		<View style={styles.container}>
 			<Image
@@ -17,7 +17,8 @@ export default function App() {
 			/>
 			<Text style={styles.mainText}>컴터파라</Text>
 			<View style={styles.mainButtons}>
-				<Pressable style={styles.button}>
+				<Pressable style={styles.button} onPress={modalOpen}>
+					<Login visible={isModalOpen} modalClose={modalOpen} />
 					<Text style={styles.buttonText}>login</Text>
 				</Pressable>
 				<Pressable style={styles.button}>

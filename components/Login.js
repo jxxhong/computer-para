@@ -1,33 +1,58 @@
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import { useState } from 'react';
+import {
+	StyleSheet,
+	Text,
+	TextInput,
+	View,
+	Modal,
+	Pressable,
+} from 'react-native';
 
-export default function App() {
+function Login(props) {
+	const [idValue, setIdValue] = useState('');
+	const [pwValue, setPwValue] = useState('');
+
 	return (
-		<View style={styles.container}>
-			<TextInput placeholder="input your goals" style={styles.textInput} />
-			<View style={styles.buttonContainer}>
-				<View style={styles.button}>
-					<Button title="add goals" color="#b180f0" />
+		<Modal visible={props.visible} animationType="slide">
+			<View style={styles.container}>
+				<View>
+					<Text>ID</Text>
+					<TextInput
+						style={styles.textInput}
+						value={idValue}
+						onChangeText={setIdValue}
+					/>
 				</View>
-				<View style={styles.button}>
-					<Button title="cancle" color="#f31282" />
+				<View>
+					<Text>PW</Text>
+					<TextInput
+						style={styles.textInput}
+						value={pwValue}
+						onChangeText={setPwValue}
+					/>
+				</View>
+				<View style={styles.buttonContainer}>
+					<Pressable style={styles.button}>
+						<Text style={styles.buttonText}>로그인</Text>
+					</Pressable>
+					<Pressable style={styles.button} onPress={props.modalClose}>
+						<Text style={styles.buttonText}>취소</Text>
+					</Pressable>
 				</View>
 			</View>
-		</View>
+		</Modal>
 	);
 }
 
+export default Login;
+
 const styles = StyleSheet.create({
-	inputContainer: {
+	container: {
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
 		padding: 16,
-		backgroundColor: '#311b6b',
-	},
-	image: {
-		width: 100,
-		height: 100,
-		margin: 20,
+		backgroundColor: '#ffe32b',
 	},
 	textInput: {
 		borderWidth: 1,
@@ -35,15 +60,21 @@ const styles = StyleSheet.create({
 		backgroundColor: '#e4d0ff',
 		color: '#120438',
 		borderRadius: 6,
-		width: '100%',
+		width: 300,
 		padding: 16,
 	},
 	buttonContainer: {
 		marginTop: 16,
 		flexDirection: 'row',
+		justifyContent: 'center',
 	},
 	button: {
 		width: 100,
 		marginHorizontal: 8,
+		backgroundColor: '#e4d0ff',
+		borderRadius: 6,
+	},
+	buttonText: {
+		textAlign: 'center',
 	},
 });
