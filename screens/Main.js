@@ -4,10 +4,11 @@ import {
 	StyleSheet,
 	ImageBackground,
 	Pressable,
+	Text,
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-export default function Main() {
+export default function Main({ route }) {
 	function itemPress(item) {
 		console.log(item.id);
 	}
@@ -23,6 +24,7 @@ export default function Main() {
 				source={require('../assets/images/case.jpeg')}
 				resizeMode="contain"
 			>
+				<Text style={styles.loginText}>{route.params.name}님 안녕하세요!</Text>
 				<FlatList
 					style={styles.buttonContainer}
 					numColumns={2}
@@ -40,14 +42,20 @@ export default function Main() {
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: '#ffffff',
+		width: '100%',
 		flex: 2,
 	},
 	backgroundImg: {
 		width: '100%',
 		height: '100%',
 	},
+	loginText: {
+		width: '100%',
+		textAlign: 'center',
+		fontSize: 30,
+	},
 	buttonContainer: {
-		marginTop: 250,
+		marginTop: 210,
 		marginLeft: 70,
 	},
 	icon: {

@@ -18,7 +18,7 @@ function Login(props) {
 		info.map((data) => {
 			if (data.id === idValue) {
 				if (data.pw === pwValue) {
-					props.userChecked();
+					props.userChecked(data.name);
 				} else {
 					Alert.alert('로그인 실패', '아이디 또는 비밀번호를 확인해주세요.');
 				}

@@ -19,9 +19,9 @@ export default function Start({ navigation }) {
 		info = [...info, userData];
 		setUserInfo(info);
 	}
-	function userChecked() {
+	function userChecked(name) {
 		setLoginModalOpen(!isLoginModalOpen);
-		navigation.navigate('Main');
+		navigation.navigate('Main', { name: name });
 	}
 
 	return (
