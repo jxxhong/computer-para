@@ -7,14 +7,28 @@ import {
 	Text,
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import Board from '../components/Board';
+import { useState } from 'react';
 
 export default function Main({ route }) {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [modalName, setModalName] = useState('');
+
 	function itemPress(item) {
-		console.log(item.id);
+		setModalName(item.id);
+		setIsModalOpen(!isModalOpen);
+	}
+	function modalClose() {
+		setIsModalOpen(!isModalOpen);
 	}
 
 	const Item = ({ item }) => {
-		return <Pressable onPress={() => itemPress(item)}>{item.icon}</Pressable>;
+		return (
+			<Pressable onPress={() => itemPress(item)}>
+				<Board visible={isModalOpen} close={modalClose} id={modalName} />
+				{item.icon}
+			</Pressable>
+		);
 	};
 
 	return (
@@ -81,10 +95,10 @@ const itemData = [
 		icon: (
 			<Image
 				style={styles.icon}
-				source={require('../assets/images/cooler.png')}
+				source={require('../assets/images/mainboard.png')}
 			/>
 		),
-		id: 'cooler',
+		id: 'mainboard',
 	},
 	{
 		icon: (
@@ -102,9 +116,9 @@ const itemData = [
 		icon: (
 			<Image
 				style={styles.icon}
-				source={require('../assets/images/mainboard.png')}
+				source={require('../assets/images/cooler.png')}
 			/>
 		),
-		id: 'mainboard',
+		id: 'cooler',
 	},
 ];
