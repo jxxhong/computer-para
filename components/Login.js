@@ -6,6 +6,7 @@ import {
 	View,
 	Modal,
 	Pressable,
+	Alert,
 } from 'react-native';
 
 function Login(props) {
@@ -15,8 +16,12 @@ function Login(props) {
 	function checkUser() {
 		let info = props.userInfo;
 		info.map((data) => {
-			if (data.id === idValue && data.pw === pwValue) {
-				props.userChecked();
+			if (data.id === idValue) {
+				if (data.pw === pwValue) {
+					props.userChecked();
+				} else {
+					Alert.alert('로그인 실패', '아이디 또는 비밀번호를 확인해주세요.');
+				}
 			}
 		});
 	}
