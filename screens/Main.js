@@ -5,30 +5,21 @@ import {
 	ImageBackground,
 	Pressable,
 	Text,
+	FlatList,
 } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import Board from '../components/Board';
 import { useState } from 'react';
 
-export default function Main({ route }) {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [modalName, setModalName] = useState('');
+export default function Main({ navigation, route }) {
+	const [itemName, setItemName] = useState('');
 
 	function itemPress(item) {
-		setModalName(item.id);
-		setIsModalOpen(!isModalOpen);
-	}
-	function modalClose() {
-		setIsModalOpen(!isModalOpen);
+		setItemName(item.id);
+		console.log(itemName);
+		navigation.navigate('Board', { name: itemName });
 	}
 
 	const Item = ({ item }) => {
-		return (
-			<Pressable onPress={() => itemPress(item)}>
-				<Board visible={isModalOpen} close={modalClose} id={modalName} />
-				{item.icon}
-			</Pressable>
-		);
+		return <Pressable onPress={() => itemPress(item)}>{item.icon}</Pressable>;
 	};
 
 	return (

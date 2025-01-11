@@ -1,24 +1,23 @@
-import {
-	Modal,
-	View,
-	Text,
-	Pressable,
-	StyleSheet,
-	FlatList,
-} from 'react-native';
+import { View, Text, Pressable, FlatList, StyleSheet } from 'react-native';
 
-export default function Board(props) {
+export default function Board({ route }) {
 	function itemPress(name) {
 		console.log(name);
 	}
 
 	const Item = ({ item }) => {
-		if (item.id === props.id)
+		if (item.id === route.params.name)
 			return item.list.map((a) => {
 				return (
 					<Pressable style={styles.item} onPress={() => itemPress(a.itemName)}>
 						<View>
-							<Text>{a.itemName}</Text>
+							{a.star ? (
+								<Text>★ {a.itemName}</Text>
+							) : (
+								<Text>☆ {a.itemName}</Text>
+							)}
+						</View>
+						<View>
 							<Text>
 								{a.price1} / {a.price2}
 							</Text>
@@ -29,13 +28,12 @@ export default function Board(props) {
 	};
 
 	return (
-		<Modal visible={props.visible} animationType="slide">
+		<View>
 			<View style={styles.navbar}>
-				<Pressable style={styles.closeBtn} onPress={props.close}>
-					<Text style={styles.closeText}>X</Text>
-				</Pressable>
 				<View style={styles.textView}>
-					<Text style={styles.mainText}>{props.id}</Text>
+					<Text style={styles.mainText}>
+						{route.params.name.toUpperCase()} 거래 게시판
+					</Text>
 				</View>
 			</View>
 			<View>
@@ -48,25 +46,16 @@ export default function Board(props) {
 					}}
 				/>
 			</View>
-		</Modal>
+		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	navbar: {
-		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		width: '100%',
 		height: 60,
-	},
-	closeBtn: {
-		flex: 1,
-		width: '100%',
-		height: '100%',
-		padding: 10,
-		borderWidth: 1,
-		borderColor: '#000000',
 	},
 	closeText: {
 		flex: 1,
@@ -90,12 +79,16 @@ const styles = StyleSheet.create({
 	},
 	itemList: {
 		width: '100%',
+		borderWidth: 1,
+		borderColor: '#dbdbdb',
+		margin: 4,
+		padding: 4,
 	},
 	item: {
 		fontSize: 30,
 		backgroundColor: '#dbdbdb',
 		borderRadius: 6,
-		margin: 10,
+		padding: 4,
 		height: 80,
 	},
 	itemText1: {},
