@@ -7,15 +7,11 @@ import {
 	Text,
 	FlatList,
 } from 'react-native';
-import { useState } from 'react';
 
 export default function Main({ navigation, route }) {
-	const [itemName, setItemName] = useState('');
-
 	function itemPress(item) {
-		setItemName(item.id);
-		console.log(itemName);
-		navigation.navigate('Board', { name: itemName });
+		let ilist = itemList.filter((x) => x.id === item.id); //밑에 setList에 넣으니 list가 빈 배열 or 늦게 들어감
+		navigation.navigate('Board', { name: item.id, itemList: [ilist] });
 	}
 
 	const Item = ({ item }) => {
@@ -111,5 +107,53 @@ const itemData = [
 			/>
 		),
 		id: 'cooler',
+	},
+];
+
+const itemList = [
+	{
+		id: 'gpu',
+		list: [
+			{ star: true, itemName: 'rtx 4080', price1: 900000, price2: 1200000 },
+		],
+	},
+	{
+		id: 'cpu',
+		list: [
+			{ star: false, itemName: 'i7-13900', price1: 800000, price2: 1200000 },
+			{ star: false, itemName: 'i7-13900', price1: 800000, price2: 1200000 },
+		],
+	},
+	{
+		id: 'ram',
+		list: [
+			{
+				star: false,
+				itemName: 'samsung ddr4 16GB',
+				price1: 150000,
+				price2: 1200000,
+			},
+		],
+	},
+	{
+		id: 'ssd',
+		list: [
+			{
+				star: true,
+				itemName: 'samsung m.2 1TB',
+				price1: 320000,
+				price2: 1200000,
+			},
+		],
+	},
+	{
+		id: 'cooler',
+		list: [{ star: false, itemName: 'cooler', price1: 30000, price2: 1200000 }],
+	},
+	{
+		id: 'mainboard',
+		list: [
+			{ star: true, itemName: 'msi b450m', price1: 70000, price2: 1200000 },
+		],
 	},
 ];

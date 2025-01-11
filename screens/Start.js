@@ -6,7 +6,10 @@ import Signin from '../components/Signin';
 export default function Start({ navigation }) {
 	const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 	const [isSigninModalOpen, setSigninModalOpen] = useState(false);
-	const [userInfo, setUserInfo] = useState([]);
+	const [userInfo, setUserInfo] = useState([
+		{ name: 'A', id: 'A', pw: 'A' },
+		{ name: 'a', id: 'a', pw: 'a' },
+	]);
 
 	function loginModalOpen() {
 		setLoginModalOpen(!isLoginModalOpen);
