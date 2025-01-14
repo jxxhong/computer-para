@@ -1,19 +1,14 @@
-import { useState } from 'react';
 import { View, Text, Pressable, FlatList, StyleSheet } from 'react-native';
-import CItem from '../components/CItem';
 
-export default function Board({ route }) {
-	const [isOpen, setIsOpen] = useState(false);
-
-	function itemPress() {
-		setIsOpen(!isOpen);
+export default function Board({ navigation, route }) {
+	function itemPress(list) {
+		navigation.navigate('Part', { info: list });
 	}
 
 	const Item = ({ item }) => {
 		return item[0].list.map((a) => {
 			return (
-				<Pressable style={styles.item} onPress={() => itemPress()}>
-					<CItem visible={isOpen} />
+				<Pressable style={styles.item} onPress={() => itemPress(a)}>
 					<View style={styles.itemUpper}>
 						{a.star ? (
 							<Text style={styles.itemText1}>★ {a.itemName}</Text>
@@ -42,7 +37,7 @@ export default function Board({ route }) {
 					data={route.params.itemList}
 					renderItem={Item}
 					keyExtractor={(item, index) => {
-						return Math.random().toString();
+						return item.price1 * Math.random().toString() + index;
 					}}
 				/>
 			</View>

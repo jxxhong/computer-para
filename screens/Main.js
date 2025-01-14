@@ -10,8 +10,11 @@ import {
 
 export default function Main({ navigation, route }) {
 	function itemPress(item) {
-		let ilist = itemList.filter((x) => x.id === item.id); //밑에 setList에 넣으니 list가 빈 배열 or 늦게 들어감
-		navigation.navigate('Board', { name: item.id, itemList: [ilist] });
+		let ilist = itemList.filter((x) => x.id === item.id);
+		navigation.navigate('Board', {
+			name: item.id,
+			itemList: [ilist],
+		});
 	}
 
 	const Item = ({ item }) => {
@@ -114,7 +117,12 @@ const itemList = [
 	{
 		id: 'gpu',
 		list: [
-			{ star: true, itemName: 'rtx 4080', price1: 900000, price2: 1200000 },
+			{
+				star: true,
+				itemName: 'rtx 4080',
+				price1: 900000,
+				price2: 1200000,
+			},
 		],
 	},
 	{
