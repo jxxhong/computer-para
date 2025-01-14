@@ -42,7 +42,7 @@ export default function Start({ navigation }) {
 						modalClose={loginModalOpen}
 						userChecked={userChecked}
 					/>
-					<Text style={styles.buttonText}>login</Text>
+					<Text style={styles.buttonText}>로그인</Text>
 				</Pressable>
 				<Pressable style={styles.button} onPress={signinModalOpen}>
 					<Signin
@@ -50,7 +50,7 @@ export default function Start({ navigation }) {
 						signIn={addUser}
 						modalClose={signinModalOpen}
 					/>
-					<Text style={styles.buttonText}>signin</Text>
+					<Text style={styles.buttonText}>회원가입</Text>
 				</Pressable>
 			</View>
 		</View>
@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	button: {
-		width: 80,
+		width: 120,
 		marginHorizontal: 10,
-		borderWidth: 1,
 		padding: 3,
-		backgroundColor: '#f7fb21',
+		backgroundColor: '#0A84ff',
+		borderRadius: 6,
 	},
 	buttonText: {
 		fontSize: 30,
