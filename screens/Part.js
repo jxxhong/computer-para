@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
 
-export default function Part({ route }) {
+export default function Part({ navigation, route }) {
 	const [isMarked, setIsMarked] = useState(false);
 
-	function partPress() {}
+	function partPress() {
+		navigation.navigate('Chat');
+	}
 	function markPress() {
 		setIsMarked(!isMarked);
 	}

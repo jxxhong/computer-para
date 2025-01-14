@@ -5,6 +5,7 @@ import Start from './screens/Start';
 import Main from './screens/Main';
 import Board from './screens/Board';
 import Part from './screens/Part';
+import Chatting from './screens/Chatting';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ export default function App() {
 				<Stack.Screen name="Main" component={Main} />
 				<Stack.Screen name="Board" component={Board} />
 				<Stack.Screen name="Part" component={Part} />
+				<Stack.Screen name="Chat" component={Chatting} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
