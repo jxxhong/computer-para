@@ -6,6 +6,7 @@ import Main from './screens/Main';
 import Board from './screens/Board';
 import Part from './screens/Part';
 import Chatting from './screens/Chatting';
+import Purchase from './screens/Purchase';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export default function App() {
 				<Stack.Screen name="Board" component={Board} />
 				<Stack.Screen name="Part" component={Part} />
 				<Stack.Screen name="Chat" component={Chatting} />
+				<Stack.Screen name="Purchase" component={Purchase} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

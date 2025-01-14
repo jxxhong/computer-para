@@ -5,7 +5,10 @@ export default function Part({ navigation, route }) {
 	const [isMarked, setIsMarked] = useState(false);
 
 	function partPress() {
-		navigation.navigate('Chat');
+		navigation.navigate('Chat', {
+			info: route.params.info,
+			name: route.params.name,
+		});
 	}
 	function markPress() {
 		setIsMarked(!isMarked);
@@ -33,7 +36,8 @@ export default function Part({ navigation, route }) {
 				</View>
 			</View>
 			<Text style={styles.priceView}>
-				판매가 : {route.params.info.price1} / 출고가 :{route.params.info.price2}
+				판매가 : {route.params.info.price1}만원 / 출고가 :
+				{route.params.info.price2}만원
 			</Text>
 			<Pressable onPress={partPress} style={styles.partContainer}>
 				<View style={styles.imgView}>

@@ -5,11 +5,10 @@ import {
 	Button,
 	StyleSheet,
 	Pressable,
-	ScrollView,
 } from 'react-native';
 import React, { useState } from 'react';
 
-export default function Chatting() {
+export default function Chatting({ navigation, route }) {
 	const [chat, setChat] = useState([]);
 	const [sendChat, setSendChat] = useState('');
 	const [turn, setTurn] = useState(true);
@@ -32,6 +31,13 @@ export default function Chatting() {
 		setSendChat('');
 	}
 
+	function purchasePress() {
+		navigation.navigate('Purchase', {
+			info: route.params.info,
+			name: route.params.name,
+		});
+	}
+
 	return (
 		<View>
 			<View overScrollMode="always" style={styles.chatView}>
@@ -47,7 +53,7 @@ export default function Chatting() {
 				/>
 				<Button title="send" onPress={send} />
 			</View>
-			<Pressable style={styles.purchaseBtn}>
+			<Pressable onPress={purchasePress} style={styles.purchaseBtn}>
 				<Text style={styles.purchaseText}>구매하기</Text>
 			</Pressable>
 		</View>

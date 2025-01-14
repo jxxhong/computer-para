@@ -2,7 +2,7 @@ import { View, Text, Pressable, FlatList, StyleSheet } from 'react-native';
 
 export default function Board({ navigation, route }) {
 	function itemPress(list) {
-		navigation.navigate('Part', { info: list });
+		navigation.navigate('Part', { info: list, name: route.params.userName });
 	}
 
 	const Item = ({ item }) => {
@@ -18,7 +18,7 @@ export default function Board({ navigation, route }) {
 					</View>
 					<View style={styles.itemLower}>
 						<Text style={styles.itemText2}>
-							{a.price1} / {a.price2}
+							판매가 : {a.price1}만원 / 출고가 : {a.price2}만원
 						</Text>
 					</View>
 				</Pressable>

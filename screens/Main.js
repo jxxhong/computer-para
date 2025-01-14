@@ -12,6 +12,7 @@ export default function Main({ navigation, route }) {
 	function itemPress(item) {
 		let ilist = itemList.filter((x) => x.id === item.id);
 		navigation.navigate('Board', {
+			userName: route.params.name,
 			name: item.id,
 			itemList: [ilist],
 		});
@@ -120,8 +121,26 @@ const itemList = [
 			{
 				star: true,
 				itemName: 'rtx 4080',
-				price1: 900000,
-				price2: 1200000,
+				price1: 90,
+				price2: 120,
+			},
+			{
+				star: false,
+				itemName: 'rtx 3060',
+				price1: 50,
+				price2: 90,
+			},
+			{
+				star: false,
+				itemName: 'gtx 1660',
+				price1: 30,
+				price2: 70,
+			},
+			{
+				star: true,
+				itemName: 'rtx 4070',
+				price1: 90,
+				price2: 120,
 			},
 		],
 	},
